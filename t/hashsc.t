@@ -92,4 +92,4 @@ is( scalar $h->keys_with($x), 3, 'all objects in same bucket' );
 #
 # I love it when a plan comes together
 
-plan tests => 26;
+plan tests => 25;
