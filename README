@@ -1,0 +1,24 @@
+Algorithm::Toy::HashSC - toy separate chain hash implementation
+
+
+For the source code, see:
+
+https://github.com/thrig/Algorithm-Toy-HashSC
+
+This can be built and installed by running:
+
+  perl Makefile.PL
+  make
+  make test
+  make install
+
+
+Run perldoc(1) on Algorithm::Toy::HashSC for more documentation.
+
+
+COPYRIGHT AND LICENCE
+
+Copyright (C) 2015 Jeremy Mates
+
+This module is free software; you can redistribute it and/or modify it
+under the Artistic License (2.0).
