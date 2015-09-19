@@ -208,16 +208,16 @@ Algorithm::Toy::HashSC - toy separate chain hash implementation for Perl
 
 A toy separate chain hash implementation; productive uses are left as an
 exercise to the reader. (Hint: music or artwork where the particulars of
-the hash code and modulus thus groups the data; this ordering or
-grouping can help determine e.g. pitch sets, rhythmic material, etc.
-Hence, the B<keys_in> and B<keys_with> methods to obtain the keys in a
-chain, or with a particular key. Variety could be added by varying the
-modulus, or changing the B<hash> or B<hashcode> methods.)
+the hash code and modulus groups the data in a deterministic manner;
+this ordering or grouping can help determine e.g. pitch sets, rhythmic
+material, etc. Hence, the B<keys_in> and B<keys_with> methods to obtain
+the keys in a chain, or with a particular key. Variety could be added by
+varying the modulus, or changing the B<hash> or B<hashcode> methods.)
 
 This module is not for use where performance is a concern, or where
-untrusted user input may be supplied for the key material. A
-deterministic implementation such as this one may allow a malicious user
-to cause all sorts of unwanted problems.
+untrusted user input may be supplied for the key material.
+L<perlsec/"Algorithmic Complexity Attacks"> discusses why Perl's hash
+are no longer deterministic.
 
 =head1 CONSTRUCTOR
 
@@ -250,7 +250,7 @@ available, or to allow duplicate keys to be stored (depending on the
 particulars of B<modulus> and the result of the B<hash> calculation).
 
 (A caller could pass keys with a B<hashcode> method that violates the
-B<unsafe> setting, but that's their problem.)
+B<unsafe> setting, but that's their problem (or feature).)
 
 =back
 
@@ -268,10 +268,10 @@ are altered.
 =item B<get> I<key>
 
 Obtains the value for the given I<key>. The key may be a scalar value,
-or something that provides a B<hashcode> method. Equality is tested for
+or a coderef that provides a B<hashcode> method. Equality is tested for
 via the C<eq> operator (L<perlop/"Equality Operators">).
 
-See also B<take>.
+Like B<take> but not destructive.
 
 =item B<hash> I<key>
 
@@ -320,6 +320,8 @@ destructive version of B<get>.
 
 Bugs, patches, and whatnot might best be applied towards:
 
+L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=Algorithm-Toy-HashSC>
+
 L<https://github.com/thrig/Algorithm-Toy-HashSC>
 
 =head2 Known Issues
@@ -336,7 +338,7 @@ do not behave so simply as that of this module do.
 
 "Algorithms" (4th Edition) by Robert Sedgewick and Kevin Wayne.
 
-L<Moo>
+L<Hash::Util> - insight into Perl's hashes.
 
 The "smhasher" project may help verify whether B<hashcode> functions are
 as perfect as possible.
